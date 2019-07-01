@@ -1,5 +1,5 @@
 import configparser
-from typing import List, Dict, Generator
+from typing import List, Dict, Generator, Any
 import os
 
 import snowflake.connector
@@ -27,13 +27,13 @@ def get_dict_cursor_from_connection(con) -> DictCursor:
 
 
 def get_dict_cursor(connection_name: str) -> DictCursor:
-    con = get_sf_connection(connection_name, role)
+    con = get_sf_connection(connection_name)
     return con.cursor(DictCursor)
 
 
 def get_results_from_query(
     query: str, cursor: DictCursor
-) -> Generator[List[Dict], None, None]:
+) -> Generator[Dict[str, Any], None, None]:
     initial_results = cursor.execute(query)
     for result in initial_results:
         yield {k.lower(): v for k, v in result.items()}
