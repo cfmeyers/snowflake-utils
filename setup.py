@@ -2,7 +2,7 @@ from distutils.core import setup
 
 install_requires = ['snowflake-connector-python']
 setup(
-    name='SnowflakeUtils',
+    name='snowflake_utils',
     version='0.13',
     packages=['snowflake_utils'],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
